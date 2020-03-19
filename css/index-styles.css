@@ -1,0 +1,846 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Why does property specified under * selector work for some but no others?
+For some properties like color you would get the illusion of * applying to all elements including pseudos because they are properties that a child can inherit from its parent.
+*/
+
+:root {
+  font-size: 15px;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+/* --------------------- */
+
+#page {
+  background-color: plum;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+  html,
+  body {
+    height: 100%;
+    overflow-x: hidden;
+    background-image: url(../images/bg_001.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  #page {
+    background-color: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #parent-content {
+    width: 100vw;
+    height: auto;
+    background-color: transparent;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  /* ------BOX-TOP------------- */
+  header {
+    width: 100%;
+    min-height: 10vh;
+    padding: 2vh 0;
+    background-color: transparent;
+  }
+  nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  nav ul li {
+    display: inline;
+    padding: 0 0 0 10px;
+    text-transform: uppercase;
+    font-family: "Poppins-medium";
+    color: white;
+    opacity: 0.8;
+    font-size: 0.8rem;
+    visibility: hidden;
+  }
+  nav a {
+    text-decoration: none;
+    font-style: italic;
+  }
+  .logo {
+    font-family: "MuliBold";
+    font-size: 1rem;
+    display: none;
+  }
+  /* -------my hamburger------------- */
+
+  .nav-icon {
+    margin: 1em;
+    width: 40px; /*width of the box lines*/
+  }
+
+  .nav-icon:after,
+  .nav-icon:before,
+  .nav-icon div {
+    background-color: #fff;
+    border-radius: 3px;
+    content: "";
+    display: block;
+    height: 5px; /*height of the lines but if you
+    change this ignoring the width 30px on top, 
+    its going to behave wrongly */
+    margin: 7px 0; /*space between the lines but if you
+    change this ignoring the width 30px on top, 
+    its going to behave wrongly, yes its apparently 
+    the margin but it changes the psoition*/
+    transition: all 0.2s ease-in-out; /*how smooth i want
+     the transition*/
+  }
+  /* --- */
+
+  /*Doing it with pseudo elements
+
+the BEFORE and AFTER are like the "Death star"
+in star wars, the ball/space station is there 
+but not there at the same time and yet can appear
+on command and have the same features as a ordinary div.
+
+
+"The ::before and ::after pseudo-elements 
+in CSS allows you to insert content onto 
+a page without it needing to be in the HTML."
+
+
+*/
+
+  .nav-icon:hover:before {
+    transform: translateY(12px) rotate(135deg);
+    /* repositions an element in the horizontal 
+    and/or vertical directions */
+
+    /* the rotate well rotate :) */
+  }
+
+  .nav-icon:hover:after {
+    transform: translateY(-12px) rotate(-135deg);
+  }
+
+  .nav-icon:hover div {
+    transform: scale(0);
+    /* will redue the middle line onto 0 so 
+    hidden, its there for when i hover and the lines 
+    form in x, if i put a 1 for example and i did the same 
+    action, i would see the middle line */
+  }
+
+  /* -------my hamburger------------- */
+  /* ------BOX-BOTTOM------------- */
+  .children-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: column wrap;
+  }
+  /* ------child1------- */
+  .child1 {
+    width: 100%;
+    height: 70vh;
+    background-color: transparent;
+  }
+  .child1-text {
+    width: 100%;
+    height: 90%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .child1-text h2 {
+    font-family: "MuliBold";
+    line-height: 40px;
+    margin: 0px 0;
+    font-size: 3rem;
+    opacity: 0.9;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  .child1-text p {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 13px;
+    margin: 20px 0;
+    font-size: 0.8rem;
+    color: white;
+    text-align: center;
+    opacity: 0.8;
+    padding: 20px;
+  }
+
+  /* ----buttons----- */
+  .child1-buttons {
+    width: 100%;
+    height: 10%;
+    background-color: transparent;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .button1 {
+    padding: 6px 20px;
+    background-color: rgb(101, 204, 97);
+    margin: 0 8px 0 0;
+    font-family: "Roboto";
+  }
+  .button1:hover {
+    background-color: rgb(88, 173, 85);
+    transition: 2s;
+  }
+
+  .button2 {
+    padding: 6px 20px;
+    background-color: rgb(73, 118, 170);
+    margin: 0 8px 0 0;
+    /* box-shadow: 1px 1px 2px 1px #666; */
+    font-family: "Roboto";
+  }
+  .button2:hover {
+    background-color: rgb(102, 150, 204);
+
+    transition: 2s;
+  }
+
+  .child1-buttons a {
+    font-size: 0.6rem;
+    font-family: "Poppins-medium";
+    color: white;
+    text-decoration: none;
+  }
+
+  /* ------child2------- */
+
+  /* ------child2------- */
+  /* ------child2------- */
+  .child2 {
+    width: 100%;
+    height: 70vh;
+    background-color: transparent;
+    position: relative;
+  }
+
+  .img1 {
+    position: absolute;
+    z-index: 1;
+    top: 18%;
+    left: 18%;
+  }
+
+  .img2 {
+    position: absolute;
+
+    top: 14%;
+    left: 37%;
+  }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 600px) {
+  html,
+  body {
+    height: 100%;
+    overflow-x: hidden;
+    background-image: url(../images/bg_001.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  #page {
+    background-color: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #parent-content {
+    width: 100vw;
+    height: auto;
+    background-color: transparent;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  /* ------BOX-TOP------------- */
+  header {
+    width: 100%;
+    min-height: 10vh;
+    padding: 5vh 0;
+    background-color: transparent;
+    margin: 0 0 20px 0;
+  }
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 30px;
+  }
+  nav ul li {
+    visibility: hidden;
+    padding: 0 0 0 10px;
+    text-transform: uppercase;
+    font-family: "Poppins-medium";
+    color: white;
+    opacity: 0.8;
+    font-size: 0.8rem;
+  }
+  nav a {
+    text-decoration: none;
+    font-style: italic;
+  }
+  .logo {
+    font-family: "MuliBold";
+    font-size: 1rem;
+    display: none;
+  }
+  /* -------my hamburger------------- */
+
+  .nav-icon {
+    margin: 1em;
+    width: 30px; /*width of the box lines*/
+  }
+
+  .nav-icon:after,
+  .nav-icon:before,
+  .nav-icon div {
+    background-color: #fff;
+    border-radius: 3px;
+    content: "";
+    display: block;
+    height: 5px; /*height of the lines but if you
+    change this ignoring the width 30px on top, 
+    its going to behave wrongly */
+    margin: 7px 0; /*space between the lines but if you
+    change this ignoring the width 30px on top, 
+    its going to behave wrongly, yes its apparently 
+    the margin but it changes the psoition*/
+    transition: all 0.2s ease-in-out; /*how smooth i want
+     the transition*/
+  }
+  /* --- */
+
+  /*Doing it with pseudo elements
+
+the BEFORE and AFTER are like the "Death star"
+in star wars, the ball/space station is there 
+but not there at the same time and yet can appear
+on command and have the same features as a ordinary div.
+
+
+"The ::before and ::after pseudo-elements 
+in CSS allows you to insert content onto 
+a page without it needing to be in the HTML."
+
+
+*/
+
+  .nav-icon:hover:before {
+    transform: translateY(12px) rotate(135deg);
+    /* repositions an element in the horizontal 
+    and/or vertical directions */
+
+    /* the rotate well rotate :) */
+  }
+
+  .nav-icon:hover:after {
+    transform: translateY(-12px) rotate(-135deg);
+  }
+
+  .nav-icon:hover div {
+    transform: scale(0);
+    /* will redue the middle line onto 0 so 
+    hidden, its there for when i hover and the lines 
+    form in x, if i put a 1 for example and i did the same 
+    action, i would see the middle line */
+  }
+
+  /* -------my hamburger------------- */
+  /* ------BOX-BOTTOM------------- */
+  .children-container {
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-flow: column wrap;
+  }
+  /* ------child1------- */
+  .child1 {
+    width: 100%;
+    height: 70vh;
+    background-color: transparent;
+  }
+  .child1-text {
+    width: 100%;
+    height: 90%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .child1-text h2 {
+    font-family: "MuliBold";
+    line-height: 45px;
+    margin: 0px 0;
+    font-size: 3.1rem;
+    opacity: 0.9;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  .child1-text p {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 16px;
+    margin: 20px 0;
+    font-size: 0.9rem;
+    color: white;
+    text-align: center;
+    opacity: 0.8;
+    padding: 20px;
+  }
+
+  /* ----buttons----- */
+  .child1-buttons {
+    width: 100%;
+    height: 10%;
+    background-color: transparent;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .button1 {
+    padding: 6px 20px;
+    background-color: rgb(101, 204, 97);
+    margin: 0 8px 0 0;
+    font-family: "Roboto";
+  }
+  .button1:hover {
+    background-color: rgb(88, 173, 85);
+    transition: 2s;
+  }
+
+  .button2 {
+    padding: 6px 20px;
+    background-color: rgb(73, 118, 170);
+    margin: 0 8px 0 0;
+    /* box-shadow: 1px 1px 2px 1px #666; */
+    font-family: "Roboto";
+  }
+  .button2:hover {
+    background-color: rgb(102, 150, 204);
+
+    transition: 2s;
+  }
+
+  .child1-buttons a {
+    font-size: 0.6rem;
+    font-family: "Poppins-medium";
+    color: white;
+    text-decoration: none;
+  }
+
+  /* ------child2------- */
+
+  /* ------child2------- */
+  /* ------child2------- */
+  .child2 {
+    width: 100%;
+    height: 70vh;
+    background-color: transparent;
+    position: relative;
+  }
+
+  .img1 {
+    position: absolute;
+    z-index: 1;
+    top: 18%;
+    left: 18%;
+  }
+
+  .img2 {
+    position: absolute;
+
+    top: 14%;
+    left: 37%;
+  }
+}
+/* ------------------------------------ */
+/* ------------------------------------ */
+/* -------------------------------------- */
+@media only screen and (min-width: 601px) and (max-width: 960px) {
+  html,
+  body {
+    height: 100%;
+    overflow-x: hidden;
+    background-image: url(../images/bg_001.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  #page {
+    background-color: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #parent-content {
+    width: 100vw;
+    height: auto;
+    background-color: transparent;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  /* ------BOX-TOP------------- */
+  header {
+    width: 80%;
+    min-height: 10vh;
+    padding: 5vh 0;
+    background-color: transparent;
+    margin: 0 0 20px 0;
+  }
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  nav ul li {
+    display: inline;
+    padding: 0 0 0 10px;
+    text-transform: uppercase;
+    font-family: "Poppins-medium";
+    color: white;
+    opacity: 0.8;
+    font-size: 0.8rem;
+  }
+  nav a {
+    text-decoration: none;
+    font-style: italic;
+  }
+  .logo {
+    font-family: "MuliBold";
+    font-size: 1rem;
+  }
+
+  /* ------BOX-BOTTOM------------- */
+  .children-container {
+    width: 70%;
+    height: auto;
+    display: flex;
+    flex-flow: column wrap;
+  }
+  /* ------child1------- */
+  .child1 {
+    width: 100%;
+    height: 70vh;
+    background-color: transparent;
+  }
+  .child1-text {
+    width: 100%;
+    height: 90%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .child1-text h2 {
+    font-family: "MuliBold";
+    line-height: 45px;
+    margin: 0px 0;
+    font-size: 3.1rem;
+    opacity: 0.9;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  .child1-text p {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 16px;
+    margin: 20px 0;
+    font-size: 0.9rem;
+    color: white;
+    text-align: center;
+    opacity: 0.8;
+    padding: 20px;
+  }
+
+  /* ----buttons----- */
+  .child1-buttons {
+    width: 100%;
+    height: 10%;
+    background-color: transparent;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .button1 {
+    padding: 6px 20px;
+    background-color: rgb(101, 204, 97);
+    margin: 0 8px 0 0;
+    font-family: "Roboto";
+  }
+  .button1:hover {
+    background-color: rgb(88, 173, 85);
+    transition: 2s;
+  }
+
+  .button2 {
+    padding: 6px 20px;
+    background-color: rgb(73, 118, 170);
+    margin: 0 8px 0 0;
+    /* box-shadow: 1px 1px 2px 1px #666; */
+    font-family: "Roboto";
+  }
+  .button2:hover {
+    background-color: rgb(102, 150, 204);
+
+    transition: 2s;
+  }
+
+  .child1-buttons a {
+    font-size: 0.6rem;
+    font-family: "Poppins-medium";
+    color: white;
+    text-decoration: none;
+  }
+
+  /* ------child2------- */
+
+  /* ------child2------- */
+  /* ------child2------- */
+  .child2 {
+    width: 100%;
+    height: 70vh;
+    background-color: transparent;
+    position: relative;
+  }
+
+  .img1 {
+    position: absolute;
+    z-index: 1;
+    top: 19%;
+    left: 22%;
+  }
+
+  .img2 {
+    position: absolute;
+
+    top: 14%;
+    left: 42%;
+  }
+}
+/* ------------------------------------ */
+/* ------------------------------------ */
+/* -------------------------------------- */
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+  html,
+  body {
+    height: 100%;
+    overflow-x: hidden;
+    background-image: url(../images/bg_001.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  #page {
+    background-color: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-content: center;
+  }
+
+  #parent-content {
+    width: 70vw;
+    height: auto;
+    background-color: transparent;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0 0 0;
+  }
+  /* ------BOX-TOP------------- */
+  header {
+    width: 80%;
+    min-height: 5vh;
+
+    background-color: transparent;
+  }
+  nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav ul li {
+    display: inline;
+    padding: 0 0 0 10px;
+    text-transform: uppercase;
+    font-family: "Poppins-medium";
+    color: white;
+    opacity: 0.8;
+    font-size: 0.8rem;
+  }
+  nav a {
+    text-decoration: none;
+    font-style: italic;
+  }
+  .logo {
+    font-family: "MuliBold";
+    font-size: 1rem;
+  }
+
+  /* -------my hamburger------------- */
+
+  .nav-icon {
+    display: none;
+  }
+
+  /* -------my hamburger------------- */
+
+  /* ----------------------------- */
+  /* ----------------------------- */
+  /* ------BOX-BOTTOM------------- */
+  .children-container {
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-flow: row wrap;
+  }
+  /* ------child1------- */
+  .child1 {
+    width: 50%;
+    height: 70vh;
+    background-color: transparent;
+  }
+  .child1-text {
+    width: 100%;
+    height: 70%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .child1-text h2 {
+    font-family: "MuliBold";
+    line-height: 30px;
+    margin: 10px 0;
+    font-size: 1.8rem;
+    opacity: 0.9;
+    color: white;
+  }
+  .child1-text p {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 13px;
+    margin: 20px 0;
+    font-size: 0.8rem;
+    color: white;
+    opacity: 0.8;
+  }
+
+  /* ----buttons----- */
+  .child1-buttons {
+    width: 100%;
+    height: 30%;
+    background-color: transparent;
+
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+  }
+  .button1 {
+    padding: 6px 20px;
+    background-color: rgb(101, 204, 97);
+    margin: 0 8px 0 0;
+    font-family: "Roboto";
+  }
+  .button1:hover {
+    background-color: rgb(88, 173, 85);
+    transition: 2s;
+  }
+
+  .button2 {
+    padding: 6px 20px;
+    background-color: rgb(73, 118, 170);
+    margin: 0 8px 0 0;
+    /* box-shadow: 1px 1px 2px 1px #666; */
+    font-family: "Roboto";
+  }
+  .button2:hover {
+    background-color: rgb(102, 150, 204);
+
+    transition: 2s;
+  }
+
+  .child1-buttons a {
+    font-size: 0.6rem;
+    font-family: "Poppins-medium";
+    color: white;
+    text-decoration: none;
+  }
+
+  /* ------child2------- */
+  .child2 {
+    width: 50%;
+    height: 70vh;
+    background-color: transparent;
+    position: relative;
+  }
+
+  .img1 {
+    position: absolute;
+    z-index: 1;
+    top: 20%;
+    left: 24%;
+  }
+
+  .img2 {
+    position: absolute;
+
+    top: 16%;
+    left: 40%;
+  }
+}
