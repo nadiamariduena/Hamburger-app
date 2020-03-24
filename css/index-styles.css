@@ -67,19 +67,27 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
   }
-  nav ul li {
-    display: inline;
-    padding: 0 0 0 10px;
+
+  #linkos {
+    display: none;
+
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+  }
+
+  nav a {
+    display: block;
+    padding: 25px;
     text-transform: uppercase;
     font-family: "Poppins-medium";
     color: white;
     opacity: 0.8;
     font-size: 0.8rem;
-    visibility: hidden;
   }
   nav a {
     text-decoration: none;
@@ -145,7 +153,7 @@ a page without it needing to be in the HTML."
 
   .nav-icon:hover div {
     transform: scale(0);
-    /* will redue the middle line onto 0 so 
+    /* will reduce the middle line onto 0 so 
     hidden, its there for when i hover and the lines 
     form in x, if i put a 1 for example and i did the same 
     action, i would see the middle line */
@@ -300,23 +308,30 @@ a page without it needing to be in the HTML."
     margin: 0 0 20px 0;
   }
   nav {
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 0 30px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
   }
-  nav ul li {
-    visibility: hidden;
-    padding: 0 0 0 10px;
+
+  #linkos {
+    display: none;
+
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+  }
+
+  nav a {
+    display: block;
+    padding: 25px;
     text-transform: uppercase;
     font-family: "Poppins-medium";
     color: white;
     opacity: 0.8;
     font-size: 0.8rem;
-  }
-  nav a {
-    text-decoration: none;
-    font-style: italic;
   }
   .logo {
     font-family: "MuliBold";
@@ -534,28 +549,100 @@ a page without it needing to be in the HTML."
     margin: 0 0 20px 0;
   }
   nav {
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
+    align-items: center;
   }
-  nav ul li {
-    display: inline;
-    padding: 0 0 0 10px;
+
+  #linkos {
+    display: none;
+
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+  }
+
+  nav a {
+    display: block;
+    padding: 25px;
     text-transform: uppercase;
     font-family: "Poppins-medium";
     color: white;
     opacity: 0.8;
     font-size: 0.8rem;
   }
-  nav a {
-    text-decoration: none;
-    font-style: italic;
-  }
+
   .logo {
     font-family: "MuliBold";
     font-size: 1rem;
+    display: none;
   }
 
+  /* -------my hamburger------------- */
+
+  .nav-icon {
+    margin: 1em;
+    width: 40px; /*width of the box lines*/
+  }
+
+  .nav-icon:after,
+  .nav-icon:before,
+  .nav-icon div {
+    background-color: #fff;
+    border-radius: 3px;
+    content: "";
+    display: block;
+    height: 5px; /*height of the lines but if you
+    change this ignoring the width 30px on top, 
+    its going to behave wrongly */
+    margin: 7px 0; /*space between the lines but if you
+    change this ignoring the width 30px on top, 
+    its going to behave wrongly, yes its apparently 
+    the margin but it changes the psoition*/
+    transition: all 0.2s ease-in-out; /*how smooth i want
+     the transition*/
+  }
+  /* --- */
+
+  /*Doing it with pseudo elements
+
+the BEFORE and AFTER are like the "Death star"
+in star wars, the ball/space station is there 
+but not there at the same time and yet can appear
+on command and have the same features as a ordinary div.
+
+
+"The ::before and ::after pseudo-elements 
+in CSS allows you to insert content onto 
+a page without it needing to be in the HTML."
+
+
+*/
+
+  .nav-icon:hover:before {
+    transform: translateY(12px) rotate(135deg);
+    /* repositions an element in the horizontal 
+    and/or vertical directions */
+
+    /* the rotate well rotate :) */
+  }
+
+  .nav-icon:hover:after {
+    transform: translateY(-12px) rotate(-135deg);
+  }
+
+  .nav-icon:hover div {
+    transform: scale(0);
+    /* will reduce the middle line onto 0 so 
+    hidden, its there for when i hover and the lines 
+    form in x, if i put a 1 for example and i did the same 
+    action, i would see the middle line */
+  }
+
+  /* -------my hamburger------------- */
   /* ------BOX-BOTTOM------------- */
   .children-container {
     width: 70%;
@@ -714,19 +801,17 @@ a page without it needing to be in the HTML."
     justify-content: space-between;
     align-items: center;
   }
-  nav ul li {
+  a {
     display: inline;
     padding: 0 0 0 10px;
     text-transform: uppercase;
     font-family: "Poppins-medium";
+    text-decoration: none;
     color: white;
     opacity: 0.8;
     font-size: 0.8rem;
   }
-  nav a {
-    text-decoration: none;
-    font-style: italic;
-  }
+
   .logo {
     font-family: "MuliBold";
     font-size: 1rem;
